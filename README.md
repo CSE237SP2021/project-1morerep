@@ -10,6 +10,7 @@ Is there anything that you implemented but doesn't currently work?
 What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
 
 Evaluation Criteria
+
 Testing - Are there a sufficient number of tests? How many of the tests currently pass?
 
 Repository Management - Are they using the proper repository branching and merging strategies?
