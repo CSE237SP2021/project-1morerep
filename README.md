@@ -1,5 +1,5 @@
 # cse237-project
-Description: This is a Java application allowing fitness lovers and starters to set their target weight, and check if they are on the right track based on their nutrition intake and workout. This app gets input from users and does some calculations to help guide them to a healthier lifestyle. 
+Description: This is a Java application allowing fitness lovers and starters to set their target weight, and check if they are on the right track based on their nutrition intake and workout. This app gets input from users and does some calculations to help guide them to a healthier lifestyle. The target audience are fitness enthusiasts or starters who want to keep track of their fitness progress and goals.
 
 What user stories were completed this iteration?
 
