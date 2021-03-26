@@ -3,6 +3,15 @@ package onemorerep;
 import java.util.Scanner;
 
 public class Menu {
+
+	
+	public boolean isValidAge(int age) {
+		return age >= 15 && age <= 80;
+	}
+	
+	public boolean isValidSex(int sex) {
+		return sex == 1 || sex == 2;
+	}
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to 1MoreRep!");
