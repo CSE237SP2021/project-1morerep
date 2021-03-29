@@ -1,18 +1,19 @@
 package onemorerep;
-public class JumpingRope implements Exercises {
-	
+
+public class Swimming implements Exercises {
+
 	private String name;
 
 	private double duration;
 	
-	public JumpingRope(String name, double duration) {
+	public Swimming(String name, double duration) {
 		this.name = name;
 		this.duration = duration;
 	}
 	
 	@Override
 	public double caloriesBurned(User person) {
-		return ((this.duration*11.8*3.5*person.getWeight())/200.0);
+		return ((this.duration*5.8*3.5*person.getWeight())/200.0);
 	}
 	@Override
 	public String getName() {
