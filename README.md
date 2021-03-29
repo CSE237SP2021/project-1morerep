@@ -5,7 +5,7 @@ Description: 1MoreRep is a Java application allowing fitness lovers and starters
 
 1. Make sure you have the latest Java version installed
 2. Open up your command line/terminal
-3. After cloning this project, run `git checkout development`
+3. After cloning this project, run `git checkout development`, if you are not on the branch already
 4. Allow execution permission for the starting script. Run `chmod +x runscript.sh`
 5. Run the script `./runscript.sh` 
 
