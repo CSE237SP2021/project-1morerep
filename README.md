@@ -13,15 +13,15 @@ Or
 
 Open Eclipse, import the git repo and run Entry.java in onemorerep package
 
-## Key featuers
+## Key features
 
-- Users put age, weight, height, and target weight
+- Users can calulate their basic BMR with personal information, calories taken in and calories burned
 - Two options: beginning of the day vs end of the day
   - Beginning of the day: tells the user the amount of calories to burn
   - End of the day: 
     - Users put what they ate and what exercises they did
-    - Calculates the target calories to burn - calories the user burnt
-    - Tells the user whether they need to exercise more or not
+    - Calculates the target calories to burn - calories the user burnt (Not implemented yet)
+    - Tells the user whether they need to exercise more or not (Not implemented yet)
 
 
 ## Iteration #1 Write up
