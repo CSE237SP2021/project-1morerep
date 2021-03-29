@@ -5,9 +5,23 @@ Description: 1MoreRep is a Java application allowing fitness lovers and starters
 
 1. Make sure you have the latest Java version installed
 2. Open up your command line/terminal
-3. After cloning this project, run `git checkout development`, if you are not on the branch already
+3. After cloning this project, go into the project-1morerep folder, run `git checkout development`, if you are not on the branch already
 4. Allow execution permission for the starting script. Run `chmod +x runscript.sh`
 5. Run the script `./runscript.sh` 
+
+Or
+
+Open Eclipse, import the git repo and run Entry.java in onemorerep package
+
+## Key featuers
+
+- Users put age, weight, height, and target weight
+- Two options: beginning of the day vs end of the day
+  - Beginning of the day: tells the user the amount of calories to burn
+  - End of the day: 
+    - Users put what they ate and what exercises they did
+    - Calculates the target calories to burn - calories the user burnt
+    - Tells the user whether they need to exercise more or not
 
 
 ## Iteration #1 Write up
@@ -21,7 +35,7 @@ Description: 1MoreRep is a Java application allowing fitness lovers and starters
 - We will finish implementing the end of the day functionality with calculations
 
 **Is there anything that you implemented but doesn't currently work?**
-- UserInputTest.java needs to be updated. We talked in class not to worry about testing the user interface so we probably might have to see how to test the user input.
+- We talked in class not to worry about testing the user interface so we probably might have to see how to test the user input.
 
 **What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)**
 - Please refer to the section above to see how to run the program.
