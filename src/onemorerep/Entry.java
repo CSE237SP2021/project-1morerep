@@ -98,7 +98,7 @@ public class Entry {
 			break;
 		// TO DO!!! Add exercise log methods
 		default:
-			System.out.println("Calling API...");
+			System.out.println("Not implemented yet.");
 		}
 		System.out.println("-----------------------");
 	}

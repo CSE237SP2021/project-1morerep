@@ -14,7 +14,8 @@ class FoodLogTest {
 		FoodLog foodLog = new FoodLog();
 		Food apple = new Food("Apple", 95);
 		foodLog.addFood(apple);
-		assertEquals(1, foodLog.getNumberOfFood(), "Number of food is correct or not. Expected 1");
+		int numberOfFood = foodLog.getNumberOfFood();
+		assertEquals(1, numberOfFood, "Number of food is incorrect. Expected 1");
 	}
 	
 	@Test
@@ -25,7 +26,8 @@ class FoodLogTest {
 		foodLog.addFood(apple);
 		foodLog.addFood(cookie);
 		foodLog.displayFoodLog();
-		assertEquals(290, foodLog.getTotalCalories(), "Total calories of all food in the foodLog is correct or not. Expected 290");
+		int totalCalories = foodLog.getTotalCalories();
+		assertEquals(290, totalCalories, "Total calories of all food in the foodLog is incorrect. Expected 290");
 	}
 
 }
