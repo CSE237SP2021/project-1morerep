@@ -18,10 +18,10 @@ Description: 1MoreRep is a Java application allowing fitness lovers and starters
 - Created Entry class to run the program and initialize different Menus
 
 **What user stories do you intend to complete next iteration?**
+- We will finish implementing the end of the day functionality with calculations
 
 **Is there anything that you implemented but doesn't currently work?**
 - UserInputTest.java needs to be updated. We talked in class not to worry about testing the user interface so we probably might have to see how to test the user input.
-- 
 
 **What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)**
 - Please refer to the section above to see how to run the program.
