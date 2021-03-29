@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import onemorerep.Food;
 
-class testFood {
+class FoodTest {
 
 	@Test
-	void FoodTest() {
+	void testFood() {
 		Food apple = new Food("Apple", 95);
 		assertEquals(95, apple.getCalories());
 	}
