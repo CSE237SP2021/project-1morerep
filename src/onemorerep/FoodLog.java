@@ -28,6 +28,7 @@ public class FoodLog {
 	
 	public void displayFoodLog() {
 		System.out.println("There are " + getNumberOfFood() + " kinds of food ate today.");
+		System.out.println("There are " + getTotalCalories() + " calories taken in today.");
 		for(int i = 0; i < foodList.size(); i++) {
 			System.out.print((i+1) + ". ");
 			foodList.get(i).displayFood();
