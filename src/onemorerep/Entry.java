@@ -12,7 +12,6 @@ public class Entry {
 	private User user;
 	private FoodLog foodLog;
 	
-	// Constructor
 	public Entry() {
 		menuMap = new HashMap<String, Menu>();
 		keyboardIn = new Scanner(System.in);
