@@ -13,7 +13,6 @@ public class Entry {
 	private FoodLog foodLog;
 	private ExerciseLog exerciseLog;
 	
-	// Constructor
 	public Entry() {
 		user = new User();
 //		user = new User("", 0, 0, 0, 0);
