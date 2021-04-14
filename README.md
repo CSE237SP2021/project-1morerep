@@ -13,6 +13,10 @@ Or
 
 Open Eclipse, import the git repo and run Entry.java in onemorerep package
 
+Tips:
+You should first choose the beginning of the day and then calculate my BMR to enter personal information.
+Otherwise, the caluculate calories burned from workout option may end in error.
+
 ## Key features
 
 - Users can calculate their basic BMR with personal information, calories taken in and calories burned
