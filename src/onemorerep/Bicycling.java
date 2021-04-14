@@ -41,7 +41,7 @@ public class Bicycling implements Exercises {
 
 	@Override
 	public void displayExercise() {
-		System.out.println(name + " " + duration + " minutes : " + caloriesBurned());
+		System.out.println(name + " " + duration + " minutes : " + caloriesBurned() + " calories");
 	}
 
 }

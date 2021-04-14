@@ -18,7 +18,7 @@ public class Food {
 	}
 	
 	public void displayFood() {
-		System.out.println(name + ": " + calories);
+		System.out.println(name + ": " + calories + " calories");
 	}
 
 }

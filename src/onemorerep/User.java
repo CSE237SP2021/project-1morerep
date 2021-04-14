@@ -8,6 +8,14 @@ public class User {
 	private double height; // cm as unit
 	private int sex; // 1 stands for male, 2 stands for female
 	
+	public User() {
+		this.name = "";
+		this.age = 0;
+		this.weight = 0;
+		this.height = 0;
+		this.sex = 0;
+		
+	}
 	public User(String name, int age, double weight, double height, int sex) {
 		this.name = name;
 		this.age = age;
@@ -75,4 +83,12 @@ public class User {
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", age=" + age + ", weight=" + weight + ", height=" + height + ", sex=" + sex
+				+ "]";
+	}
+	
 }
