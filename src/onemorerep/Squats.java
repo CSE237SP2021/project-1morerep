@@ -7,13 +7,16 @@ public class Squats implements Exercises {
 
 	private double duration;
 	
-	public Squats(String name, double duration) {
+	private User person;
+	
+	public Squats(String name, double duration, User person) {
 		this.name = name;
 		this.duration = duration;
+		this.person = person;
 	}
 	
 	@Override
-	public double caloriesBurned(User person) {
+	public double caloriesBurned() {
 		// TODO Auto-generated method stub
 		return ((this.duration*5.5*3.5*person.getWeight())/200.0);
 	}
@@ -36,6 +39,11 @@ public class Squats implements Exercises {
 	@Override
 	public void setDuration(double minutes) {
 		this.duration = minutes;
+	}
+
+	@Override
+	public void displayExercise() {
+		System.out.println(name + " " + duration + " minutes : " + caloriesBurned());
 	}
 
 }
