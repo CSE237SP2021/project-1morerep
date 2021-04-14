@@ -18,9 +18,9 @@ class ExerciseTest {
 
 	@Test
 	void testJumpingRope() {
-		JumpingRope jumpingRope = new JumpingRope("JumpingRope", 25);
 		User user = new User("Jing", 23, 49, 163, 2);
-		int caloriesBurned = (int) Math.round(jumpingRope.caloriesBurned(user));
+		JumpingRope jumpingRope = new JumpingRope("JumpingRope", 25, user);
+		int caloriesBurned = (int) Math.round(jumpingRope.caloriesBurned());
 		assertEquals(253, caloriesBurned, "Calories burned from JumpingRope calculation for female 1 is incorrect. Expected 253");
 	}
 	
