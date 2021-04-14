@@ -15,7 +15,7 @@ Open Eclipse, import the git repo and run Entry.java in onemorerep package
 
 ## Key features
 
-- Users can calulate their basic BMR with personal information, calories taken in and calories burned
+- Users can calculate their basic BMR with personal information, calories taken in and calories burned
 - Two options: beginning of the day vs end of the day
   - Beginning of the day: tells the user the amount of calories to burn
   - End of the day: 
@@ -41,3 +41,20 @@ Open Eclipse, import the git repo and run Entry.java in onemorerep package
 - Please refer to the section above to see how to run the program.
 
 
+
+
+## Iteration #2 Write up
+
+**What user stories were completed this iteration?**
+- Checkout 'gui' branch to see the "incomplete" (complete but not merged to development because some features are halfway there) GUI using Java Swing. Users can see a Welcome screen and can choose the Main Menu in GUI.
+- 
+
+**What user stories do you intend to complete next iteration?**
+- Continue with implementing the rest of the GUI so we have full transition from command-line-based application to a better UI interface.
+
+
+**Is there anything that you implemented but doesn't currently work?**
+- GUI is still in the process.
+
+**What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)**
+- Please refer to the section above to see how to run the program.
