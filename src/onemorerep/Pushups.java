@@ -1,19 +1,22 @@
- package onemorerep;
-public class JumpingRope implements Exercises {
+package onemorerep;
+
+public class Pushups implements Exercises {
 	
 	private String name;
 
 	private double duration;
 	
-	public JumpingRope(String name, double duration) {
+	public Pushups(String name, double duration) {
 		this.name = name;
 		this.duration = duration;
 	}
-	
+
 	@Override
 	public double caloriesBurned(User person) {
-		return ((this.duration*11.8*3.5*person.getWeight())/200.0);
+		// TODO Auto-generated method stub
+		return ((this.duration*8.0*3.5*person.getWeight())/200.0);
 	}
+
 	@Override
 	public String getName() {
 		return name;
