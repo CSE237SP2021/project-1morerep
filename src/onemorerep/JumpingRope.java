@@ -1,4 +1,4 @@
-package onemorerep;
+ package onemorerep;
 public class JumpingRope implements Exercises {
 	
 	private String name;

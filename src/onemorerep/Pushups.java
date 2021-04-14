@@ -1,23 +1,25 @@
 package onemorerep;
 
-public class Swimming implements Exercises {
-
+public class Pushups implements Exercises {
+	
 	private String name;
 
 	private double duration;
 	
 	private User person;
 	
-	public Swimming(String name, double duration, User person) {
+	public Pushups(String name, double duration, User person) {
 		this.name = name;
 		this.duration = duration;
 		this.person = person;
 	}
-	
+
 	@Override
 	public double caloriesBurned() {
-		return ((this.duration*5.8*3.5*person.getWeight())/200.0);
+		// TODO Auto-generated method stub
+		return ((this.duration*8.0*3.5*person.getWeight())/200.0);
 	}
+
 	@Override
 	public String getName() {
 		return name;
