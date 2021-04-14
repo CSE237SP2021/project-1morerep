@@ -11,12 +11,16 @@ public class Entry {
 	private Scanner keyboardIn;
 	private User user;
 	private FoodLog foodLog;
+	private ExerciseLog exerciseLog;
 	
 	// Constructor
 	public Entry() {
+		user = new User();
+//		user = new User("", 0, 0, 0, 0);
 		menuMap = new HashMap<String, Menu>();
 		keyboardIn = new Scanner(System.in);
 		foodLog = new FoodLog();
+		exerciseLog = new ExerciseLog();
 	}
 
 	// Initialize all menus and run the main menu
@@ -52,6 +56,12 @@ public class Entry {
 		// TO DO!!! Check exercise log options
 		exerciseLogMenu.setOptions(Arrays.asList("Add an exercise", "View exercise log summary", "Back"));
 		
+//		// Generate exercise log menu
+//		Menu exerciseTypeMenu = new Menu("Add an exercuse now!");
+//		menuMap.put("Add an exercise", exerciseTypeMenu);
+//		// TO DO!!! Check exercise log options
+//		exerciseLogMenu.setOptions(Arrays.asList("Bicycling", "JumpingRope", "Pushups", "Running", "Situps", "Squats", "Swimming", "Walking"));
+//		
 	}
 
 	private void runMenu(Menu menu) {
@@ -75,6 +85,7 @@ public class Entry {
 	}
 	
 	private void processOption(String option) {
+		//if(menuMap.containsKey(option) && !option.equals("Add an exercise")) {
 		if(menuMap.containsKey(option)) {
 			runMenu(menuMap.get(option));
 		} else {
@@ -92,6 +103,12 @@ public class Entry {
 			break;
 		case "View food log summary":
 			foodLog.displayFoodLog();
+			break;
+		case "Add an exercise":
+			Apis.addExerciseToExerciseLog(keyboardIn, exerciseLog, user);
+			break;
+		case "View exercise log summary":
+			exerciseLog.displayExerciseLog();
 			break;
 		case "Quit":
 			System.out.println("Bye!");
