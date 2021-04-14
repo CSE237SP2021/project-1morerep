@@ -1,11 +1,15 @@
 package onemorerep;
 
+import java.awt.*;
+import java.awt.event.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Entry {
+import javax.swing.*;
+
+public class Entry extends JFrame implements ActionListener {
 	// A hash map storing all menus, the key is the option name in the previous map, the value is the sub menu
 	private Map<String, Menu> menuMap;
 	private Scanner keyboardIn;
@@ -13,10 +17,27 @@ public class Entry {
 	private FoodLog foodLog;
 	private ExerciseLog exerciseLog;
 	
+	private JFrame frame;
+	
+	//Constants for frame dimensions
+	private static final int FRAME_WIDTH = 500;
+	private static final int FRAME_HEIGHT = 500;
+	
+	JRadioButton beginningButton;
+	JRadioButton endOfTheDayButton;
+	JPanel welcomePanel;
+	JButton letsGoButton;
+	JButton nextButton;
+	JLabel mainMenuLabel;
+	JPanel mainMenuQuestionPanel;
+	ButtonGroup buttonGroup;
+	JPanel radioButtonsPanel;
+	
 	public Entry() {
 		user = new User();
 //		user = new User("", 0, 0, 0, 0);
 		menuMap = new HashMap<String, Menu>();
+		frame = new JFrame();
 		keyboardIn = new Scanner(System.in);
 		foodLog = new FoodLog();
 		exerciseLog = new ExerciseLog();
@@ -24,11 +45,117 @@ public class Entry {
 
 	// Initialize all menus and run the main menu
 	private void runEntry() {
-		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
-		generateAllMenus(mainMenu);
+		//Welcome label
+		JLabel welcomeLabel = new JLabel();
+		welcomeLabel.setText("Welcome to 1MoreRep!");
+		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		welcomeLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		welcomeLabel.setFont(new Font("Helvetica", Font.PLAIN, 30));
 		
-		runMenu(mainMenu);
+		//Let's Go! Button
+		letsGoButton = new JButton();
+		letsGoButton.setBounds(200, 270, 100, 40);
+		letsGoButton.addActionListener(this);
+		letsGoButton.setText("Let's go!");
+		letsGoButton.setFocusable(false);
+		
+		
+		//Next Button
+		nextButton = new JButton();
+		nextButton.setBounds(200, 300, 100, 40);
+		nextButton.addActionListener(e -> System.out.println("Next clicked"));
+		nextButton.setText("Next");
+		nextButton.setFocusable(false);
+		
+
+		//Welcome label panel
+		welcomePanel = new JPanel();
+		welcomePanel.setBounds(0, 0, 500, 250);
+		welcomePanel.setBackground(new Color(0xE3DAC9));
+		welcomePanel.setLayout(new BorderLayout()); //BorderLayout acts like JFrame layout. JPanel uses FlowLayout
+		welcomePanel.add(welcomeLabel);
+		
+		
+		//Main Menu Label
+		mainMenuLabel = new JLabel();
+		mainMenuLabel.setText("Please choose what time of the day it is.");
+		mainMenuLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		mainMenuLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		mainMenuLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+
+		//Main Menu Question Panel that holds the label
+		mainMenuQuestionPanel = new JPanel();
+		mainMenuQuestionPanel.setLayout(new BorderLayout());
+		mainMenuQuestionPanel.setBounds(0, 0, 500, 200);
+		mainMenuQuestionPanel.add(mainMenuLabel);
+		
+		//Panel for radioButtons
+		radioButtonsPanel = new JPanel();
+		radioButtonsPanel.setBounds(0, 200, 500, 100);
+		
+		beginningButton = new JRadioButton("Beginning");
+		endOfTheDayButton = new JRadioButton("End");
+		
+		beginningButton.addActionListener(this);
+		endOfTheDayButton.addActionListener(this);
+		
+		//Group for radio buttons
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(beginningButton);
+		buttonGroup.add(endOfTheDayButton);
+		
+		radioButtonsPanel.add(beginningButton);
+		radioButtonsPanel.add(endOfTheDayButton);
+		
+		
+		//Frame configurations
+		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		frame.setTitle("1MoreRep");
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Frame exists when clicked on close button
+		frame.setResizable(false); //non-resizeable screen
+		
+		frame.add(welcomePanel);
+		frame.add(letsGoButton);
+		
+		radioButtonsPanel.setVisible(false);
+		mainMenuLabel.setVisible(false);
+		mainMenuQuestionPanel.setVisible(false);
+		nextButton.setVisible(false);
+		frame.add(mainMenuQuestionPanel);
+		frame.add(radioButtonsPanel);
+		frame.add(nextButton);
+
+		frame.getContentPane().setBackground(new Color(0xE3DAC9));
+		frame.setVisible(true); //Make frame visible.
+		
+//		
+//		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
+//		generateAllMenus(mainMenu);
+//		
+//		runMenu(mainMenu);
 	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == beginningButton) {
+			System.out.println("Clicked on beginning");
+		}
+		else if(e.getSource() == endOfTheDayButton) {
+			System.out.println("End Of The Day clicked");
+		}
+		else if(e.getSource() == letsGoButton) {
+			letsGoButton.setVisible(false);
+			welcomePanel.setVisible(false);
+		
+			nextButton.setVisible(true);
+			mainMenuLabel.setVisible(true);
+			mainMenuQuestionPanel.setVisible(true);
+			radioButtonsPanel.setVisible(true);
+		}
+	}
+	
 
 	private void generateAllMenus(Menu mainMenu) {
 		// Add options for the main menu
@@ -123,5 +250,7 @@ public class Entry {
 		Entry entry = new Entry();
 		entry.runEntry();
 	}
+
+
 
 }
