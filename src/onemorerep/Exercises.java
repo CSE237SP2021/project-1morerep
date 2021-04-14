@@ -2,7 +2,7 @@ package onemorerep;
 
 public interface Exercises {
 	
-	public double caloriesBurned(User person);
+	public double caloriesBurned();
 
 	public String getName();
 	
@@ -12,7 +12,7 @@ public interface Exercises {
 	
 	public void setDuration(double minutes);
 	
-	
+	public void displayExercise();
 	
 	
 }
