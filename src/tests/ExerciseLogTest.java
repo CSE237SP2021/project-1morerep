@@ -32,7 +32,7 @@ class ExerciseLogTest {
 		exerciseLog.addExercise(jumpingRope2);
 		exerciseLog.displayExerciseLog();
 		int totalCalories = exerciseLog.getTotalCalories();
-		assertEquals(607, totalCalories, "Total calories of all food in the foodLog is incorrect. Expected 607");
+		assertEquals(607, totalCalories, "Total calories of all exercise in the exerciseLog is incorrect. Expected 607");
 	}
 
 }

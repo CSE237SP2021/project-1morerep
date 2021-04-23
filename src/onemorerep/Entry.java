@@ -110,10 +110,13 @@ public class Entry {
 		case "View exercise log summary":
 			exerciseLog.displayExerciseLog();
 			break;
+		case "Summary of the day":
+			Apis.displayCalorieBalance(foodLog, exerciseLog);
+			break;
 		case "Quit":
 			System.out.println("Bye!");
 			break;
-		// TO DO!!! Add exercise log methods
+		
 		default:
 			System.out.println("Not implemented yet.");
 		}

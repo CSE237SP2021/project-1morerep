@@ -84,7 +84,23 @@ public class Apis {
 		System.out.println("7. Swimming");
 		System.out.println("8. Walking");
 	}
+	
+	public static void displayCalorieBalance(FoodLog foodLog, ExerciseLog exerciseLog) {
+		System.out.println("There are " + foodLog.getTotalCalories() + " calories taken in today.");
+		System.out.println("There are " + exerciseLog.getTotalCalories() + " calories burned today.");
+		int calorieBalance = getCalorieBalance(foodLog, exerciseLog);
+		System.out.println("Your calorie balance is " + calorieBalance + " .");
+		if(calorieBalance > 0) {
+			System.out.println("Good Job!");
+		} else {
+			System.out.println("You should exercise more!");
+		}
+	}
 
+	
+	public static int getCalorieBalance(FoodLog foodLog, ExerciseLog exerciseLog) {
+		return exerciseLog.getTotalCalories() - foodLog.getTotalCalories();
+	}
 	
 	private static String getStringInput(Scanner keyboardIn, String prompt) {
 		System.out.println(prompt);
