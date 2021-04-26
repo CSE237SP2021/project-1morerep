@@ -82,7 +82,6 @@ public class Entry extends JFrame implements ActionListener {
 		letsGoButton.setText("Let's go!");
 		letsGoButton.setFocusable(false);
 		
-		
 		//Welcome label panel
 		welcomePanel = new JPanel();
 		welcomePanel.setBounds(0, 0, 500, 250);
@@ -109,6 +108,7 @@ public class Entry extends JFrame implements ActionListener {
 		radioButtonsPanel = new JPanel();
 		radioButtonsPanel.setBounds(0, 200, 500, 100);
 		radioButtonsPanel.setBackground(new Color(0xE3DAC9));
+
 		
 		beginningButton = new JRadioButton("Beginning");
 		endOfTheDayButton = new JRadioButton("End");
@@ -123,7 +123,6 @@ public class Entry extends JFrame implements ActionListener {
 		
 		radioButtonsPanel.add(beginningButton);
 		radioButtonsPanel.add(endOfTheDayButton);
-		
 		
 		
 		//Panel for sex radioButtons
@@ -144,7 +143,6 @@ public class Entry extends JFrame implements ActionListener {
 		
 		sexButtonsPanel.add(maleButton);
 		sexButtonsPanel.add(femaleButton);
-		
 		
 
 		//Calculate BMR Button and Back Button
@@ -193,7 +191,6 @@ public class Entry extends JFrame implements ActionListener {
 		heightNextButton.addActionListener(this);
 		heightNextButton.setText("Next");
 		heightNextButton.setFocusable(false);
-		
 		
 		//Frame configurations
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -361,7 +358,6 @@ public class Entry extends JFrame implements ActionListener {
 			radioButtonsPanel.setVisible(true);
 		}
 	}
-	
 
 	private void generateAllMenus(Menu mainMenu) {
 		// Add options for the main menu
