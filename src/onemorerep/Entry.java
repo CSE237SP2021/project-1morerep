@@ -25,13 +25,36 @@ public class Entry extends JFrame implements ActionListener {
 	
 	JRadioButton beginningButton;
 	JRadioButton endOfTheDayButton;
+	String username;
+	int age;
+	double weight;
+	double height;
+	int sex;
+	
 	JPanel welcomePanel;
 	JButton letsGoButton;
-	JButton nextButton;
-	JLabel mainMenuLabel;
-	JPanel mainMenuQuestionPanel;
+	JLabel textAreaLabel;
+	JPanel textAreaPanel;
+	
 	ButtonGroup buttonGroup;
 	JPanel radioButtonsPanel;
+	JButton calcBMRButton;
+	JButton backButton;
+	
+	JTextField personalInfoTextField; //TextField that will accept name, age, weight, height
+	
+	ButtonGroup sexButtonGroup;
+	JPanel sexButtonsPanel;
+	JRadioButton maleButton;
+	JRadioButton femaleButton;
+	
+	JLabel BMRResultLabel;
+	
+	JButton nameNextButton;
+	JButton ageNextButton;
+	JButton weightNextButton;
+	JButton heightNextButton;
+	JButton sexNextButton;
 	
 	public Entry() {
 		user = new User();
@@ -60,14 +83,6 @@ public class Entry extends JFrame implements ActionListener {
 		letsGoButton.setFocusable(false);
 		
 		
-		//Next Button
-		nextButton = new JButton();
-		nextButton.setBounds(200, 300, 100, 40);
-		nextButton.addActionListener(e -> System.out.println("Next clicked"));
-		nextButton.setText("Next");
-		nextButton.setFocusable(false);
-		
-
 		//Welcome label panel
 		welcomePanel = new JPanel();
 		welcomePanel.setBounds(0, 0, 500, 250);
@@ -77,21 +92,23 @@ public class Entry extends JFrame implements ActionListener {
 		
 		
 		//Main Menu Label
-		mainMenuLabel = new JLabel();
-		mainMenuLabel.setText("Please choose what time of the day it is.");
-		mainMenuLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		mainMenuLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		mainMenuLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		textAreaLabel = new JLabel();
+		textAreaLabel.setText("Please choose what time of the day it is.");
+		textAreaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		textAreaLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		textAreaLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
 
 		//Main Menu Question Panel that holds the label
-		mainMenuQuestionPanel = new JPanel();
-		mainMenuQuestionPanel.setLayout(new BorderLayout());
-		mainMenuQuestionPanel.setBounds(0, 0, 500, 200);
-		mainMenuQuestionPanel.add(mainMenuLabel);
+		textAreaPanel = new JPanel();
+		textAreaPanel.setLayout(new BorderLayout());
+		textAreaPanel.setBounds(0, 0, 500, 200);
+		textAreaPanel.setBackground(new Color(0xE3DAC9));
+		textAreaPanel.add(textAreaLabel);
 		
-		//Panel for radioButtons
+		//Panel for beginning and end of day radioButtons
 		radioButtonsPanel = new JPanel();
 		radioButtonsPanel.setBounds(0, 200, 500, 100);
+		radioButtonsPanel.setBackground(new Color(0xE3DAC9));
 		
 		beginningButton = new JRadioButton("Beginning");
 		endOfTheDayButton = new JRadioButton("End");
@@ -99,13 +116,83 @@ public class Entry extends JFrame implements ActionListener {
 		beginningButton.addActionListener(this);
 		endOfTheDayButton.addActionListener(this);
 		
-		//Group for radio buttons
+		//Group for beginning and end of day radio buttons
 		buttonGroup = new ButtonGroup();
 		buttonGroup.add(beginningButton);
 		buttonGroup.add(endOfTheDayButton);
 		
 		radioButtonsPanel.add(beginningButton);
 		radioButtonsPanel.add(endOfTheDayButton);
+		
+		
+		
+		//Panel for sex radioButtons
+		sexButtonsPanel = new JPanel();
+		sexButtonsPanel.setBounds(0, 200, 500, 100);
+		sexButtonsPanel.setBackground(new Color(0xE3DAC9));
+		
+		maleButton = new JRadioButton("Male");
+		femaleButton = new JRadioButton("Female");
+		
+		maleButton.addActionListener(this);
+		femaleButton.addActionListener(this);
+		
+		//Group for beginning and end of day radio buttons
+		sexButtonGroup = new ButtonGroup();
+		sexButtonGroup.add(maleButton);
+		sexButtonGroup.add(femaleButton);
+		
+		sexButtonsPanel.add(maleButton);
+		sexButtonsPanel.add(femaleButton);
+		
+		
+
+		//Calculate BMR Button and Back Button
+		calcBMRButton = new JButton();
+		calcBMRButton.setBounds(150, 300, 100, 40);
+		calcBMRButton.addActionListener(this);
+		calcBMRButton.setText("Calculate BMR");
+		calcBMRButton.setFocusable(false);
+		
+		backButton = new JButton();
+		backButton.setBounds(250, 300, 100, 40);
+		backButton.addActionListener(this);
+		backButton.setText("Back");
+		backButton.setFocusable(false);
+		
+		
+		//Personal Info textfield
+		personalInfoTextField = new JTextField();
+		personalInfoTextField.setBounds(100, 200, 300, 40);
+		
+		//Name Next button
+		nameNextButton = new JButton();
+		nameNextButton.setBounds(200, 300, 100, 40);
+		nameNextButton.addActionListener(this);
+		nameNextButton.setText("Next");
+		nameNextButton.setFocusable(false);
+		
+
+		//Age Next button
+		ageNextButton = new JButton();
+		ageNextButton.setBounds(200, 300, 100, 40);
+		ageNextButton.addActionListener(this);
+		ageNextButton.setText("Next");
+		ageNextButton.setFocusable(false);
+		
+		//Weight Next button
+		weightNextButton = new JButton();
+		weightNextButton.setBounds(200, 300, 100, 40);
+		weightNextButton.addActionListener(this);
+		weightNextButton.setText("Next");
+		weightNextButton.setFocusable(false);
+		
+		//Height Next button
+		heightNextButton = new JButton();
+		heightNextButton.setBounds(200, 300, 100, 40);
+		heightNextButton.addActionListener(this);
+		heightNextButton.setText("Next");
+		heightNextButton.setFocusable(false);
 		
 		
 		//Frame configurations
@@ -115,21 +202,38 @@ public class Entry extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Frame exists when clicked on close button
 		frame.setResizable(false); //non-resizeable screen
 		
+		//Visibilities
+		radioButtonsPanel.setVisible(false);
+		textAreaLabel.setVisible(false);
+		textAreaPanel.setVisible(false);
+		calcBMRButton.setVisible(false);
+		backButton.setVisible(false);
+		personalInfoTextField.setVisible(false);
+		nameNextButton.setVisible(false);
+		ageNextButton.setVisible(false);
+		weightNextButton.setVisible(false);
+		heightNextButton.setVisible(false);
+		sexButtonsPanel.setVisible(false);
+		
+		//Adding items to frame
 		frame.add(welcomePanel);
 		frame.add(letsGoButton);
-		
-		radioButtonsPanel.setVisible(false);
-		mainMenuLabel.setVisible(false);
-		mainMenuQuestionPanel.setVisible(false);
-		nextButton.setVisible(false);
-		frame.add(mainMenuQuestionPanel);
+		frame.add(textAreaPanel);
 		frame.add(radioButtonsPanel);
-		frame.add(nextButton);
+		frame.add(calcBMRButton);
+		frame.add(backButton);
+		frame.add(nameNextButton);
+		frame.add(personalInfoTextField);
+		frame.add(ageNextButton);
+		frame.add(weightNextButton);
+		frame.add(heightNextButton);
+		frame.add(sexButtonsPanel);
+		
 
+		//Finalize config
 		frame.getContentPane().setBackground(new Color(0xE3DAC9));
 		frame.setVisible(true); //Make frame visible.
 		
-//		
 //		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
 //		generateAllMenus(mainMenu);
 //		
@@ -141,17 +245,119 @@ public class Entry extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == beginningButton) {
 			System.out.println("Clicked on beginning");
+			//Hide the radio buttons
+			radioButtonsPanel.setVisible(false);
+			//Hide please choose what time of the day it is label
+			textAreaLabel.setText("<html>" + "Good Morning! You can calculate your basic BMR with your personal information here." + "</html>");			
+			
+			//Show Back button
+			backButton.setVisible(true);
+			//Show Calculate BMR button
+			calcBMRButton.setVisible(true);
+			//Show Good morning...calculate BMR label
+			
 		}
 		else if(e.getSource() == endOfTheDayButton) {
-			System.out.println("End Of The Day clicked");
+			//Show label that says endOfTheDay is only available through the command line or your Eclipse console.
+		}
+		else if(e.getSource() == nameNextButton) {
+			//Set username instance variable
+			username = personalInfoTextField.getText();
+			
+			//Hide nameNextButton
+			nameNextButton.setVisible(false);
+			
+			//Set textAreaLabel to be greeting of the name
+			textAreaLabel.setText("<html>" + "Hello," + this.username + "! Please enter your age." + "</html>");
+			
+			personalInfoTextField.setText("");
+			
+			//Show ageNextButton
+			ageNextButton.setVisible(true);
+		}
+		else if(e.getSource() == ageNextButton) {
+			//Set user age
+			this.age = Integer.parseInt(personalInfoTextField.getText());
+			
+			//Hide ageNextButton
+			ageNextButton.setVisible(false);
+			//Reset textField
+			personalInfoTextField.setText("");
+			//Set textArea Label
+			textAreaLabel.setText("<html>" + "Nice work," + this.username + "! Please enter your weight (kg)." + "</html>");
+			
+			//Show weightNextButton
+			weightNextButton.setVisible(true);
+		}
+		else if(e.getSource() == weightNextButton) {
+			//Set user weight
+			this.weight = Double.parseDouble(personalInfoTextField.getText());
+			//Hide weightNextButton
+			weightNextButton.setVisible(false);
+			//Reset TextField
+			personalInfoTextField.setText("");
+			//Set textArea label
+			textAreaLabel.setText("<html>" + "Almost there," + this.username + ". Please enter your height (cm)." + "</html>");
+			//Show heightNextButton
+			heightNextButton.setVisible(true);
+		}
+		else if(e.getSource() == heightNextButton) {
+			//Set user height
+			this.height = Double.parseDouble(personalInfoTextField.getText());
+			//Hide heightNextButton
+			heightNextButton.setVisible(false);
+			//Hide textField
+			personalInfoTextField.setVisible(false);
+			//Set textArea label
+			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+			//Show sexButton group
+			sexButtonsPanel.setVisible(true);
+		}
+		else if(e.getSource() == maleButton) {
+			//Set user sex
+			this.sex = 1;
+			//Hide radiobuttons
+			sexButtonsPanel.setVisible(false);
+			//Set textAreaLabel with BMR calculated
+			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+		}
+		else if(e.getSource() == femaleButton) {
+			//Set user sex
+			this.sex = 2;
+			//Hide radiobuttons
+			sexButtonsPanel.setVisible(false);
+			//Set textAreaLabel with BMR calculated
+			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+		}
+		else if(e.getSource() == calcBMRButton) {
+			//Hide CalcBMR and Back buttons
+			calcBMRButton.setVisible(false);
+			backButton.setVisible(false);
+			
+			//Change textAreaLabel text
+			textAreaLabel.setText("Please enter your name");
+			//Show nameNextButton
+			nameNextButton.setVisible(true);
+			//Show nameTextField
+			personalInfoTextField.setVisible(true);
+		}
+		else if(e.getSource() == backButton) {
+			//Show the main menu
+			textAreaLabel.setVisible(true);
+			textAreaPanel.setVisible(true);
+			radioButtonsPanel.setVisible(true);
+			
+			//Hide the current page
+			backButton.setVisible(false);
+			calcBMRButton.setVisible(false);
+			textAreaLabel.setText("Please choose what time of the day it is.");
 		}
 		else if(e.getSource() == letsGoButton) {
 			letsGoButton.setVisible(false);
 			welcomePanel.setVisible(false);
 		
-			nextButton.setVisible(true);
-			mainMenuLabel.setVisible(true);
-			mainMenuQuestionPanel.setVisible(true);
+			textAreaLabel.setVisible(true);
+			textAreaPanel.setVisible(true);
 			radioButtonsPanel.setVisible(true);
 		}
 	}
