@@ -19,19 +19,6 @@ public class Entry extends JFrame implements ActionListener {
 	
 	private GUI gui;
 	
-	
-	ButtonGroup sexButtonGroup;
-	JPanel sexButtonsPanel;
-	JRadioButton maleButton;
-	JRadioButton femaleButton;
-	
-	JLabel BMRResultLabel;
-	
-	JButton ageNextButton;
-	JButton weightNextButton;
-	JButton heightNextButton;
-	JButton sexNextButton;
-	
 	public Entry() {
 		user = new User();
 		menuMap = new HashMap<String, Menu>();
@@ -43,62 +30,6 @@ public class Entry extends JFrame implements ActionListener {
 
 	// Initialize all menus and run the main menu
 	private void runEntry() {
-		
-		//Panel for sex radioButtons
-		sexButtonsPanel = new JPanel();
-		sexButtonsPanel.setBounds(0, 200, 500, 100);
-		sexButtonsPanel.setBackground(new Color(0xE3DAC9));
-		
-		maleButton = new JRadioButton("Male");
-		femaleButton = new JRadioButton("Female");
-		
-		maleButton.addActionListener(this);
-		femaleButton.addActionListener(this);
-		
-		//Group for beginning and end of day radio buttons
-		sexButtonGroup = new ButtonGroup();
-		sexButtonGroup.add(maleButton);
-		sexButtonGroup.add(femaleButton);
-		
-		sexButtonsPanel.add(maleButton);
-		sexButtonsPanel.add(femaleButton);
-		
-
-		//Age Next button
-		ageNextButton = new JButton();
-		ageNextButton.setBounds(200, 300, 100, 40);
-		ageNextButton.addActionListener(this);
-		ageNextButton.setText("Next");
-		ageNextButton.setFocusable(false);
-		
-		//Weight Next button
-		weightNextButton = new JButton();
-		weightNextButton.setBounds(200, 300, 100, 40);
-		weightNextButton.addActionListener(this);
-		weightNextButton.setText("Next");
-		weightNextButton.setFocusable(false);
-		
-
-		//Height Next button
-		heightNextButton = new JButton();
-		heightNextButton.setBounds(200, 300, 100, 40);
-		heightNextButton.addActionListener(this);
-		heightNextButton.setText("Next");
-		heightNextButton.setFocusable(false);
-		
-		//Visibilities
-		ageNextButton.setVisible(false);
-		weightNextButton.setVisible(false);
-		heightNextButton.setVisible(false);
-		sexButtonsPanel.setVisible(false);
-		
-		//Adding items to frame
-		gui.addComponent(ageNextButton);
-		gui.addComponent(weightNextButton);
-		gui.addComponent(heightNextButton);
-		gui.addComponent(sexButtonsPanel);
-		
-
 		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
 		generateAllMenus(mainMenu);
 		

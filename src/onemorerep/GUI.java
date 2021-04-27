@@ -34,7 +34,6 @@ public class GUI extends JFrame implements ActionListener {
 	GUIButton ageNextButton;
 	GUIButton weightNextButton;
 	GUIButton heightNextButton;
-	GUIButton sexNextButton;
 
 	public GUI(User user) {
 		frame = new JFrame();
@@ -58,15 +57,15 @@ public class GUI extends JFrame implements ActionListener {
 		
 		heightNextButton = new GUIButton("Next", this);
 		this.addComponent(heightNextButton.getButton());
-		
-		sexNextButton = new GUIButton("Next", this);
-		this.addComponent(sexNextButton.getButton());
-		
+
 		//Initilalizing Radio Buttons
-		
+		this.initializeSexRadioButtons();
+				
 		//Initializing all Panels
 		this.initializeWelcomePanel();
 		this.initializeTextAreaPanel();
+		this.initializeSexButtonsPanel();
+		
 		
 		//Initializing all Labels
 		this.initializeWelcomeLabel();
@@ -77,6 +76,28 @@ public class GUI extends JFrame implements ActionListener {
 		personalInfoTextField.setBounds(100, 200, 300, 40);
 		personalInfoTextField.setVisible(false);
 		this.addComponent(personalInfoTextField);
+	}
+	
+	public void initializeSexButtonsPanel() {
+		sexButtonsPanel = new JPanel();
+		sexButtonsPanel.setBounds(0, 200, 500, 100);
+		sexButtonsPanel.setBackground(new Color(0xE3DAC9));
+		sexButtonsPanel.add(maleButton);
+		sexButtonsPanel.add(femaleButton);
+		sexButtonsPanel.setVisible(false);
+		this.addComponent(sexButtonsPanel);
+	}
+	
+	public void initializeSexRadioButtons() {
+		maleButton = new JRadioButton("Male");
+		femaleButton = new JRadioButton("Female");
+		
+		maleButton.addActionListener(this);
+		femaleButton.addActionListener(this);
+		
+		sexButtonGroup = new ButtonGroup();
+		sexButtonGroup.add(maleButton);
+		sexButtonGroup.add(femaleButton);
 	}
 	
 	public void initializeWelcomePanel() {
@@ -178,6 +199,60 @@ public class GUI extends JFrame implements ActionListener {
 			
 			//Show ageNextButton
 			ageNextButton.show();
+		}
+		else if(e.getSource() == ageNextButton.getButton()) {
+			//Set user age
+			this.user.setAge(Integer.parseInt(personalInfoTextField.getText()));
+			
+			//Hide ageNextButton
+			ageNextButton.hide();
+			//Reset textField
+			personalInfoTextField.setText("");
+			//Set textArea Label
+			textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
+			
+			//Show weightNextButton
+			weightNextButton.show();
+		}
+		else if(e.getSource() == weightNextButton.getButton()) {
+			//Set user weight
+			this.user.setWeight(Double.parseDouble(personalInfoTextField.getText()));
+			//Hide weightNextButton
+			weightNextButton.hide();
+			//Reset TextField
+			personalInfoTextField.setText("");
+			//Set textArea label
+			textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
+			//Show heightNextButton
+			heightNextButton.show();
+		}
+		else if(e.getSource() == heightNextButton.getButton()) {
+			//Set user height
+			this.user.setHeight(Double.parseDouble(personalInfoTextField.getText()));
+			//Hide heightNextButton
+			heightNextButton.hide();
+			//Hide textField
+			personalInfoTextField.setVisible(false);
+			//Set textArea label
+			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+			//Show sexButton group
+			sexButtonsPanel.setVisible(true);
+		}
+		else if(e.getSource() == maleButton) {
+			//Set user sex
+			this.user.setSex(1);
+			//Hide radiobuttons
+			sexButtonsPanel.setVisible(false);
+			//Set textAreaLabel with BMR calculated
+			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
+		}
+		else if(e.getSource() == femaleButton) {
+			//Set user sex
+			this.user.setSex(2);
+			//Hide radiobuttons
+			sexButtonsPanel.setVisible(false);
+			//Set textAreaLabel with BMR calculated
+			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
 		}
 	}
 	
