@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class GUIButton extends JFrame implements ActionListener {
+public class GUIButton {
 	//Constant dimensions
-	private static final int WIDTH = 300;
+	private static final int WIDTH = 100;
 	private static final int HEIGHT = 40;
 	
 	private static final int X = 200;
@@ -15,17 +15,23 @@ public class GUIButton extends JFrame implements ActionListener {
 	
 	private JButton button;
 	
-	public GUIButton(String text) {
+	public GUIButton(String text, GUI gui) {
 		button = new JButton();
-		button.setBounds(200, 300, 100, 40);
-		button.addActionListener(this);
+		button.setBounds(X, Y, WIDTH, HEIGHT);
+		button.addActionListener(gui);
 		button.setText(text);
 		button.setFocusable(false);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+	public JButton getButton() {
+		return button;
+	}
+	
+	public void show() {
+		button.setVisible(true);
+	}
+	
+	public void hide() {
+		button.setVisible(false);
 	}
 }
