@@ -13,11 +13,12 @@ public class Entry {
 	private FoodLog foodLog;
 	private ExerciseLog exerciseLog;
 	
-	// Constructor
+	private GUI gui;
+	
 	public Entry() {
 		user = new User();
-//		user = new User("", 0, 0, 0, 0);
 		menuMap = new HashMap<String, Menu>();
+		gui = new GUI(user);
 		keyboardIn = new Scanner(System.in);
 		foodLog = new FoodLog();
 		exerciseLog = new ExerciseLog();
@@ -30,7 +31,7 @@ public class Entry {
 		
 		runMenu(mainMenu);
 	}
-
+	
 	private void generateAllMenus(Menu mainMenu) {
 		// Add options for the main menu
 		mainMenu.setOptions(Arrays.asList("Beginning of the day", "End of the day", "Quit"));
@@ -79,6 +80,7 @@ public class Entry {
 			String option = menu.getOption(selectedOption);
 			processOption(option);
 			
+			System.out.println('\n');
 			menu.displayMenu();
 			selectedOption = keyboardIn.nextInt();
 		}
@@ -86,7 +88,11 @@ public class Entry {
 	
 	private void processOption(String option) {
 		//if(menuMap.containsKey(option) && !option.equals("Add an exercise")) {
-		if(menuMap.containsKey(option)) {
+		if(option.equals("Beginning of the day")) {
+			System.out.println("\nThe menu you selected has a Graphical User Interface (GUI) feature. Feel free to come back to use other menu options.");
+			gui.runGUI(); //Make frame visible.
+		}
+		else if(menuMap.containsKey(option)) {
 			runMenu(menuMap.get(option));
 		} else {
 			callAPI(option);
@@ -95,30 +101,27 @@ public class Entry {
 	
 	private void callAPI(String option) {
 		switch(option) {
-		case "Calculate my BMR":
-			Apis.calculateMyBMR(keyboardIn, user);
-			break;
-		case "Add a food":
-			Apis.addFoodToFoodLog(keyboardIn, foodLog);;
-			break;
-		case "View food log summary":
-			foodLog.displayFoodLog();
-			break;
-		case "Add an exercise":
-			Apis.addExerciseToExerciseLog(keyboardIn, exerciseLog, user);
-			break;
-		case "View exercise log summary":
-			exerciseLog.displayExerciseLog();
-			break;
-		case "Summary of the day":
-			Apis.displayCalorieBalance(foodLog, exerciseLog);
-			break;
-		case "Quit":
-			System.out.println("Bye!");
-			break;
-		
-		default:
-			System.out.println("Not implemented yet.");
+			case "Add a food":
+				Apis.addFoodToFoodLog(keyboardIn, foodLog);;
+				break;
+			case "View food log summary":
+				foodLog.displayFoodLog();
+				break;
+			case "Add an exercise":
+				Apis.addExerciseToExerciseLog(keyboardIn, exerciseLog, user);
+				break;
+			case "View exercise log summary":
+				exerciseLog.displayExerciseLog();
+				break;
+			case "Summary of the day":
+				Apis.displayCalorieBalance(foodLog, exerciseLog);
+				break;
+			case "Quit":
+				System.out.println("Bye!");
+				break;
+			
+			default:
+				System.out.println("Not implemented yet.");
 		}
 		System.out.println("-----------------------");
 	}
@@ -127,5 +130,7 @@ public class Entry {
 		Entry entry = new Entry();
 		entry.runEntry();
 	}
+
+
 
 }
