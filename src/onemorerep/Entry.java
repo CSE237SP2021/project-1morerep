@@ -17,11 +17,7 @@ public class Entry extends JFrame implements ActionListener {
 	private FoodLog foodLog;
 	private ExerciseLog exerciseLog;
 	
-	private JFrame frame;
-	
-	//Constants for frame dimensions
-	private static final int FRAME_WIDTH = 500;
-	private static final int FRAME_HEIGHT = 500;
+	private GUI gui;
 	
 	JPanel welcomePanel;
 	JButton letsGoButton;
@@ -46,9 +42,8 @@ public class Entry extends JFrame implements ActionListener {
 	
 	public Entry() {
 		user = new User();
-//		user = new User("", 0, 0, 0, 0);
 		menuMap = new HashMap<String, Menu>();
-		frame = new JFrame();
+		gui = new GUI();
 		keyboardIn = new Scanner(System.in);
 		foodLog = new FoodLog();
 		exerciseLog = new ExerciseLog();
@@ -155,13 +150,6 @@ public class Entry extends JFrame implements ActionListener {
 		heightNextButton.setText("Next");
 		heightNextButton.setFocusable(false);
 		
-		//Frame configurations
-		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		frame.setTitle("1MoreRep");
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Frame exists when clicked on close button
-		frame.setResizable(false); //non-resizeable screen
-		
 		//Visibilities
 		textAreaLabel.setVisible(false);
 		textAreaPanel.setVisible(false);
@@ -174,22 +162,18 @@ public class Entry extends JFrame implements ActionListener {
 		sexButtonsPanel.setVisible(false);
 		
 		//Adding items to frame
-		frame.add(welcomePanel);
-		frame.add(letsGoButton);
-		frame.add(textAreaPanel);
-		frame.add(calcBMRButton);
-		frame.add(nameNextButton);
-		frame.add(personalInfoTextField);
-		frame.add(ageNextButton);
-		frame.add(weightNextButton);
-		frame.add(heightNextButton);
-		frame.add(sexButtonsPanel);
+		gui.addComponent(welcomePanel);
+		gui.addComponent(letsGoButton);
+		gui.addComponent(textAreaPanel);
+		gui.addComponent(calcBMRButton);
+		gui.addComponent(nameNextButton);
+		gui.addComponent(personalInfoTextField);
+		gui.addComponent(ageNextButton);
+		gui.addComponent(weightNextButton);
+		gui.addComponent(heightNextButton);
+		gui.addComponent(sexButtonsPanel);
 		
 
-		//Finalize config
-		frame.getContentPane().setBackground(new Color(0xE3DAC9));
-//		frame.setVisible(true); //Make frame visible.
-		
 		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
 		generateAllMenus(mainMenu);
 		
@@ -354,7 +338,7 @@ public class Entry extends JFrame implements ActionListener {
 		//if(menuMap.containsKey(option) && !option.equals("Add an exercise")) {
 		if(option.equals("Beginning of the day")) {
 			System.out.println("\nThe menu you selected has a Graphical User Interface (GUI) feature. Feel free to come back to use other menu options.");
-			frame.setVisible(true); //Make frame visible.
+			gui.runGUI(); //Make frame visible.
 		}
 		else if(menuMap.containsKey(option)) {
 			runMenu(menuMap.get(option));
