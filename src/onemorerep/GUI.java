@@ -8,6 +8,11 @@ import java.awt.event.*;
 
 public class GUI extends JFrame implements ActionListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	//Constants for frame dimensions
 	private static final int FRAME_WIDTH = 500;
 	private static final int FRAME_HEIGHT = 500;
@@ -29,6 +34,7 @@ public class GUI extends JFrame implements ActionListener {
 	JRadioButton femaleButton;
 	
 	JLabel BMRResultLabel;
+	JLabel errorLabel;
 	
 	GUIButton nameNextButton;
 	GUIButton ageNextButton;
@@ -66,10 +72,10 @@ public class GUI extends JFrame implements ActionListener {
 		this.initializeTextAreaPanel();
 		this.initializeSexButtonsPanel();
 		
-		
 		//Initializing all Labels
 		this.initializeWelcomeLabel();
 		this.initializeTextAreaLabel();
+//		this.initializeErrorLabel();
 		
 		//Initializing textField
 		personalInfoTextField = new JTextField();
@@ -128,7 +134,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public void initializeTextAreaLabel() {
 		textAreaLabel = new JLabel();
-		textAreaLabel.setText("Please choose what time of the day it is.");
+		textAreaLabel.setText("Welcome!");
 		textAreaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		textAreaLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		textAreaLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -136,6 +142,16 @@ public class GUI extends JFrame implements ActionListener {
 		textAreaPanel.add(textAreaLabel);
 	}
 	
+//	public void initializeErrorLabel() {
+//		errorLabel = new JLabel();
+//		errorLabel.setText("Error...");
+//		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		errorLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+//		errorLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+//		errorLabel.setVisible(false);
+//		textAreaPanel.add(errorLabel);
+//	}
+//	
 	
 	public void makeGUIVisible() {
 		frame.setVisible(true);
@@ -193,7 +209,7 @@ public class GUI extends JFrame implements ActionListener {
 			nameNextButton.hide();
 			
 			//Set textAreaLabel to be greeting of the name
-			textAreaLabel.setText("<html>" + "Hello," + this.user.getName() + "! Please enter your age." + "</html>");
+			textAreaLabel.setText("<html>" + "Hello," + this.user.getName() + "! Please enter your age (15-80)." + "</html>");
 			
 			personalInfoTextField.setText("");
 			
@@ -201,42 +217,86 @@ public class GUI extends JFrame implements ActionListener {
 			ageNextButton.show();
 		}
 		else if(e.getSource() == ageNextButton.getButton()) {
-			//Set user age
-			this.user.setAge(Integer.parseInt(personalInfoTextField.getText()));
-			
-			//Hide ageNextButton
-			ageNextButton.hide();
-			//Reset textField
-			personalInfoTextField.setText("");
-			//Set textArea Label
-			textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
-			
-			//Show weightNextButton
-			weightNextButton.show();
+			try {
+				int age = Integer.parseInt(personalInfoTextField.getText());
+				
+				if(!Apis.isValidAgeInput(age)) {
+					textAreaLabel.setText("<html>" + "Your age is out of the range 15-80." + "</html>");
+				}
+				else {
+					//Set user age
+					this.user.setAge(age);
+					
+					//Hide ageNextButton
+					ageNextButton.hide();
+					//Reset textField
+					personalInfoTextField.setText("");
+					//Set textArea Label
+					textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
+					
+					//Show weightNextButton
+					weightNextButton.show();
+				}
+			}
+			catch(NumberFormatException e1) {
+				textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
+			}
+			catch(NullPointerException e2) {
+				textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
+			}
 		}
 		else if(e.getSource() == weightNextButton.getButton()) {
-			//Set user weight
-			this.user.setWeight(Double.parseDouble(personalInfoTextField.getText()));
-			//Hide weightNextButton
-			weightNextButton.hide();
-			//Reset TextField
-			personalInfoTextField.setText("");
-			//Set textArea label
-			textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
-			//Show heightNextButton
-			heightNextButton.show();
+			try {
+				double weight = Double.parseDouble(personalInfoTextField.getText());
+				
+				if(!Apis.isPositiveDoubleInput(weight)) {
+					textAreaLabel.setText("<html>" + "Please enter a positive weight(kg)" + "</html>");
+				}
+				else {
+					//Set user weight
+					this.user.setWeight(weight);
+					//Hide weightNextButton
+					weightNextButton.hide();
+					//Reset TextField
+					personalInfoTextField.setText("");
+					//Set textArea label
+					textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
+					//Show heightNextButton
+					heightNextButton.show();
+				}
+			}
+			catch(NumberFormatException e1) {
+				textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
+			}
+			catch(NullPointerException e2) {
+				textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
+			}
 		}
 		else if(e.getSource() == heightNextButton.getButton()) {
-			//Set user height
-			this.user.setHeight(Double.parseDouble(personalInfoTextField.getText()));
-			//Hide heightNextButton
-			heightNextButton.hide();
-			//Hide textField
-			personalInfoTextField.setVisible(false);
-			//Set textArea label
-			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
-			//Show sexButton group
-			sexButtonsPanel.setVisible(true);
+			try {
+				double height = Double.parseDouble(personalInfoTextField.getText());
+				
+				if(!Apis.isPositiveDoubleInput(height)) {
+					textAreaLabel.setText("<html>" + "Please enter a positive height(cm)" + "</html>");
+				}
+				
+				//Set user height
+				this.user.setHeight(height);
+				//Hide heightNextButton
+				heightNextButton.hide();
+				//Hide textField
+				personalInfoTextField.setVisible(false);
+				//Set textArea label
+				textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+				//Show sexButton group
+				sexButtonsPanel.setVisible(true);
+			}
+			catch(NumberFormatException e1) {
+				textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
+			}
+			catch(NullPointerException e2) {
+				textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
+			}
 		}
 		else if(e.getSource() == maleButton) {
 			//Set user sex
