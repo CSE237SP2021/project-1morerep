@@ -56,6 +56,7 @@ public class Entry extends JFrame implements ActionListener {
 	JButton heightNextButton;
 	JButton sexNextButton;
 	
+	
 	public Entry() {
 		user = new User();
 //		user = new User("", 0, 0, 0, 0);
@@ -82,7 +83,6 @@ public class Entry extends JFrame implements ActionListener {
 		letsGoButton.setText("Let's go!");
 		letsGoButton.setFocusable(false);
 		
-		
 		//Welcome label panel
 		welcomePanel = new JPanel();
 		welcomePanel.setBounds(0, 0, 500, 250);
@@ -92,6 +92,7 @@ public class Entry extends JFrame implements ActionListener {
 		
 		
 		//Main Menu Label
+
 		textAreaLabel = new JLabel();
 		textAreaLabel.setText("Please choose what time of the day it is.");
 		textAreaLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -193,7 +194,6 @@ public class Entry extends JFrame implements ActionListener {
 		heightNextButton.addActionListener(this);
 		heightNextButton.setText("Next");
 		heightNextButton.setFocusable(false);
-		
 		
 		//Frame configurations
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -358,6 +358,7 @@ public class Entry extends JFrame implements ActionListener {
 		
 			textAreaLabel.setVisible(true);
 			textAreaPanel.setVisible(true);
+
 			radioButtonsPanel.setVisible(true);
 		}
 	}
