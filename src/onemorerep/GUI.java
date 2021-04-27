@@ -7,11 +7,8 @@ import java.awt.event.*;
 
 
 public class GUI extends JFrame implements ActionListener {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L; //Required for interface ActionListener
 	
 	//Constants for frame dimensions
 	private static final int FRAME_WIDTH = 500;
@@ -34,7 +31,6 @@ public class GUI extends JFrame implements ActionListener {
 	JRadioButton femaleButton;
 	
 	JLabel BMRResultLabel;
-	JLabel errorLabel;
 	
 	GUIButton nameNextButton;
 	GUIButton ageNextButton;
@@ -75,16 +71,22 @@ public class GUI extends JFrame implements ActionListener {
 		//Initializing all Labels
 		this.initializeWelcomeLabel();
 		this.initializeTextAreaLabel();
-//		this.initializeErrorLabel();
 		
 		//Initializing textField
+		this.intializePersonalInfoTextField();
+	}
+	
+	
+	//Initializing functions ----------------------------------------------
+	
+	private void intializePersonalInfoTextField() {
 		personalInfoTextField = new JTextField();
 		personalInfoTextField.setBounds(100, 200, 300, 40);
 		personalInfoTextField.setVisible(false);
 		this.addComponent(personalInfoTextField);
 	}
 	
-	public void initializeSexButtonsPanel() {
+	private void initializeSexButtonsPanel() {
 		sexButtonsPanel = new JPanel();
 		sexButtonsPanel.setBounds(0, 200, 500, 100);
 		sexButtonsPanel.setBackground(new Color(0xE3DAC9));
@@ -94,7 +96,7 @@ public class GUI extends JFrame implements ActionListener {
 		this.addComponent(sexButtonsPanel);
 	}
 	
-	public void initializeSexRadioButtons() {
+	private void initializeSexRadioButtons() {
 		maleButton = new JRadioButton("Male");
 		femaleButton = new JRadioButton("Female");
 		
@@ -106,7 +108,7 @@ public class GUI extends JFrame implements ActionListener {
 		sexButtonGroup.add(femaleButton);
 	}
 	
-	public void initializeWelcomePanel() {
+	private void initializeWelcomePanel() {
 		welcomePanel = new JPanel();
 		welcomePanel.setBounds(0, 0, 500, 250);
 		welcomePanel.setBackground(new Color(0xE3DAC9));
@@ -114,7 +116,7 @@ public class GUI extends JFrame implements ActionListener {
 		this.addComponent(welcomePanel);
 	}
 	
-	public void initializeWelcomeLabel() {
+	private void initializeWelcomeLabel() {
 		JLabel welcomeLabel = new JLabel();
 		welcomeLabel.setText("Welcome to 1MoreRep!");
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -123,7 +125,7 @@ public class GUI extends JFrame implements ActionListener {
 		welcomePanel.add(welcomeLabel);
 	}
 	
-	public void initializeTextAreaPanel() {
+	private void initializeTextAreaPanel() {
 		textAreaPanel = new JPanel();
 		textAreaPanel.setLayout(new BorderLayout());
 		textAreaPanel.setBounds(0, 0, 500, 200);
@@ -132,7 +134,7 @@ public class GUI extends JFrame implements ActionListener {
 		this.addComponent(textAreaPanel);
 	}
 	
-	public void initializeTextAreaLabel() {
+	private void initializeTextAreaLabel() {
 		textAreaLabel = new JLabel();
 		textAreaLabel.setText("Welcome!");
 		textAreaLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,16 +144,9 @@ public class GUI extends JFrame implements ActionListener {
 		textAreaPanel.add(textAreaLabel);
 	}
 	
-//	public void initializeErrorLabel() {
-//		errorLabel = new JLabel();
-//		errorLabel.setText("Error...");
-//		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//		errorLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-//		errorLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
-//		errorLabel.setVisible(false);
-//		textAreaPanel.add(errorLabel);
-//	}
-//	
+	
+	
+	//public functions ----------------------------------------------
 	
 	public void makeGUIVisible() {
 		frame.setVisible(true);
@@ -162,7 +157,7 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	//Frame configurations
-	public void configureGUIFrame() {
+	private void configureGUIFrame() {
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setTitle("1MoreRep");
 		frame.setLayout(null);
@@ -176,144 +171,186 @@ public class GUI extends JFrame implements ActionListener {
 		this.makeGUIVisible();
 	}
 	
+	
+	
+	//Action functions ----------------------------------------------
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == letsGoButton.getButton()) {
-			letsGoButton.hide();
-			welcomePanel.setVisible(false);
-			textAreaLabel.setVisible(true);
-			textAreaPanel.setVisible(true);
-
-			textAreaLabel.setText("<html>" + "Good Morning! You can calculate your basic BMR with your personal information here." + "</html>");			
-			
-			//Show Calculate BMR button
-			calcBMRButton.show();
+			this.handleClickLetsGoButton();
 		}
 		else if(e.getSource() == calcBMRButton.getButton()) {
-			//Hide CalcBMR and Back buttons
-			calcBMRButton.hide();
-			
-			//Change textAreaLabel text
-			textAreaLabel.setText("Please enter your name");
-			//Show nameNextButton
-			nameNextButton.show();
-			//Show nameTextField
-			personalInfoTextField.setVisible(true);
+			this.handleClickCalcBMRButton();
 		}
 		else if(e.getSource() == nameNextButton.getButton()) {
-			//Set username instance variable
-			this.user.setName(personalInfoTextField.getText());
-			
-			//Hide nameNextButton
-			nameNextButton.hide();
-			
-			//Set textAreaLabel to be greeting of the name
-			textAreaLabel.setText("<html>" + "Hello," + this.user.getName() + "! Please enter your age (15-80)." + "</html>");
-			
-			personalInfoTextField.setText("");
-			
-			//Show ageNextButton
-			ageNextButton.show();
+			this.handleClickNameNextButton();
 		}
 		else if(e.getSource() == ageNextButton.getButton()) {
-			try {
-				int age = Integer.parseInt(personalInfoTextField.getText());
-				
-				if(!Apis.isValidAgeInput(age)) {
-					textAreaLabel.setText("<html>" + "Your age is out of the range 15-80." + "</html>");
-				}
-				else {
-					//Set user age
-					this.user.setAge(age);
-					
-					//Hide ageNextButton
-					ageNextButton.hide();
-					//Reset textField
-					personalInfoTextField.setText("");
-					//Set textArea Label
-					textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
-					
-					//Show weightNextButton
-					weightNextButton.show();
-				}
-			}
-			catch(NumberFormatException e1) {
-				textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
-			}
-			catch(NullPointerException e2) {
-				textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
-			}
+			this.handleClickAgeNextButton();
 		}
 		else if(e.getSource() == weightNextButton.getButton()) {
-			try {
-				double weight = Double.parseDouble(personalInfoTextField.getText());
-				
-				if(!Apis.isPositiveDoubleInput(weight)) {
-					textAreaLabel.setText("<html>" + "Please enter a positive weight(kg)" + "</html>");
-				}
-				else {
-					//Set user weight
-					this.user.setWeight(weight);
-					//Hide weightNextButton
-					weightNextButton.hide();
-					//Reset TextField
-					personalInfoTextField.setText("");
-					//Set textArea label
-					textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
-					//Show heightNextButton
-					heightNextButton.show();
-				}
-			}
-			catch(NumberFormatException e1) {
-				textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
-			}
-			catch(NullPointerException e2) {
-				textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
-			}
+			this.handleClickWeightNextButton();
 		}
 		else if(e.getSource() == heightNextButton.getButton()) {
-			try {
-				double height = Double.parseDouble(personalInfoTextField.getText());
-				
-				if(!Apis.isPositiveDoubleInput(height)) {
-					textAreaLabel.setText("<html>" + "Please enter a positive height(cm)" + "</html>");
-				}
-				
-				//Set user height
-				this.user.setHeight(height);
-				//Hide heightNextButton
-				heightNextButton.hide();
-				//Hide textField
-				personalInfoTextField.setVisible(false);
-				//Set textArea label
-				textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
-				//Show sexButton group
-				sexButtonsPanel.setVisible(true);
-			}
-			catch(NumberFormatException e1) {
-				textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
-			}
-			catch(NullPointerException e2) {
-				textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
-			}
+			this.handleClickHeightNextButton();
 		}
 		else if(e.getSource() == maleButton) {
-			//Set user sex
-			this.user.setSex(1);
-			//Hide radiobuttons
-			sexButtonsPanel.setVisible(false);
-			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
+			this.handleClickMaleRadioButton();
 		}
 		else if(e.getSource() == femaleButton) {
-			//Set user sex
-			this.user.setSex(2);
-			//Hide radiobuttons
-			sexButtonsPanel.setVisible(false);
-			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
+			this.handleClickFemaleRadioButton();
 		}
+	}
+
+	
+	private void handleClickLetsGoButton() {
+		letsGoButton.hide();
+		welcomePanel.setVisible(false);
+		textAreaLabel.setVisible(true);
+		textAreaPanel.setVisible(true);
+
+		textAreaLabel.setText("<html>" + "Good Morning! You can calculate your basic BMR with your personal information here." + "</html>");			
+		
+		//Show Calculate BMR button
+		calcBMRButton.show();
+	}
+	
+	private void handleClickCalcBMRButton() {
+		//Hide CalcBMR and Back buttons
+		calcBMRButton.hide();
+		
+		//Change textAreaLabel text
+		textAreaLabel.setText("Please enter your name");
+		//Show nameNextButton
+		nameNextButton.show();
+		//Show nameTextField
+		personalInfoTextField.setVisible(true);
+	}
+	
+	
+	private void handleClickNameNextButton() {
+		//Set username instance variable
+		this.user.setName(personalInfoTextField.getText());
+		
+		//Hide nameNextButton
+		nameNextButton.hide();
+		
+		//Set textAreaLabel to be greeting of the name
+		textAreaLabel.setText("<html>" + "Hello," + this.user.getName() + "! Please enter your age (15-80)." + "</html>");
+		
+		personalInfoTextField.setText("");
+		
+		//Show ageNextButton
+		ageNextButton.show();
+	}
+	
+	
+	private void handleClickAgeNextButton() {
+		try {
+			int age = Integer.parseInt(personalInfoTextField.getText());
+			
+			if(!Apis.isValidAgeInput(age)) {
+				textAreaLabel.setText("<html>" + "Your age is out of the range 15-80." + "</html>");
+			}
+			else {
+				//Set user age
+				this.user.setAge(age);
+				
+				//Hide ageNextButton
+				ageNextButton.hide();
+				//Reset textField
+				personalInfoTextField.setText("");
+				//Set textArea Label
+				textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
+				
+				//Show weightNextButton
+				weightNextButton.show();
+			}
+		}
+		catch(NumberFormatException e1) {
+			textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
+		}
+		catch(NullPointerException e2) {
+			textAreaLabel.setText("<html>" + "Your input age is not a number. Please enter your age from 15-80." + "</html>");
+		}
+	}
+	
+	
+	private void handleClickWeightNextButton() {
+		try {
+			double weight = Double.parseDouble(personalInfoTextField.getText());
+			
+			if(!Apis.isPositiveDoubleInput(weight)) {
+				textAreaLabel.setText("<html>" + "Please enter a positive weight(kg)" + "</html>");
+			}
+			else {
+				//Set user weight
+				this.user.setWeight(weight);
+				//Hide weightNextButton
+				weightNextButton.hide();
+				//Reset TextField
+				personalInfoTextField.setText("");
+				//Set textArea label
+				textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
+				//Show heightNextButton
+				heightNextButton.show();
+			}
+		}
+		catch(NumberFormatException e1) {
+			textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
+		}
+		catch(NullPointerException e2) {
+			textAreaLabel.setText("<html>" + "Your input weight is not a number. Please enter your weight(kg)" + "</html>");
+		}
+	}
+	
+	
+	private void handleClickHeightNextButton() {
+		try {
+			double height = Double.parseDouble(personalInfoTextField.getText());
+			
+			if(!Apis.isPositiveDoubleInput(height)) {
+				textAreaLabel.setText("<html>" + "Please enter a positive height(cm)" + "</html>");
+			}
+			
+			//Set user height
+			this.user.setHeight(height);
+			//Hide heightNextButton
+			heightNextButton.hide();
+			//Hide textField
+			personalInfoTextField.setVisible(false);
+			//Set textArea label
+			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+			//Show sexButton group
+			sexButtonsPanel.setVisible(true);
+		}
+		catch(NumberFormatException e1) {
+			textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
+		}
+		catch(NullPointerException e2) {
+			textAreaLabel.setText("<html>" + "Your input height is not a number. Please enter your height(cm)" + "</html>");
+		}
+	}
+	
+	
+	private void handleClickMaleRadioButton() {
+		//Set user sex
+		this.user.setSex(1);
+		//Hide radiobuttons
+		sexButtonsPanel.setVisible(false);
+		//Set textAreaLabel with BMR calculated
+		textAreaLabel.setText("<html>" +  "Your BMR is: " + this.user.calculateBMR() + ". Don't quit this window to keep working on the console/command line" + "</html>");
+	}
+	
+	private void handleClickFemaleRadioButton() {
+		//Set user sex
+		this.user.setSex(2);
+		//Hide radiobuttons
+		sexButtonsPanel.setVisible(false);
+		//Set textAreaLabel with BMR calculated
+		textAreaLabel.setText("<html>" +  "Your BMR is: " + this.user.calculateBMR() + ". Don't quit this window to keep working on the console/command line" + "</html>");
 	}
 	
 }
