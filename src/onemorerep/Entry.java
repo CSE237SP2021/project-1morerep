@@ -56,7 +56,6 @@ public class Entry extends JFrame implements ActionListener {
 	JButton heightNextButton;
 	JButton sexNextButton;
 	
-	
 	public Entry() {
 		user = new User();
 //		user = new User("", 0, 0, 0, 0);
@@ -92,7 +91,6 @@ public class Entry extends JFrame implements ActionListener {
 		
 		
 		//Main Menu Label
-
 		textAreaLabel = new JLabel();
 		textAreaLabel.setText("Please choose what time of the day it is.");
 		textAreaLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,7 +124,6 @@ public class Entry extends JFrame implements ActionListener {
 		radioButtonsPanel.add(endOfTheDayButton);
 		
 		
-		
 		//Panel for sex radioButtons
 		sexButtonsPanel = new JPanel();
 		sexButtonsPanel.setBounds(0, 200, 500, 100);
@@ -145,7 +142,6 @@ public class Entry extends JFrame implements ActionListener {
 		
 		sexButtonsPanel.add(maleButton);
 		sexButtonsPanel.add(femaleButton);
-		
 		
 
 		//Calculate BMR Button and Back Button
@@ -188,6 +184,7 @@ public class Entry extends JFrame implements ActionListener {
 		weightNextButton.setText("Next");
 		weightNextButton.setFocusable(false);
 		
+
 		//Height Next button
 		heightNextButton = new JButton();
 		heightNextButton.setBounds(200, 300, 100, 40);
@@ -328,6 +325,7 @@ public class Entry extends JFrame implements ActionListener {
 			sexButtonsPanel.setVisible(false);
 			//Set textAreaLabel with BMR calculated
 			textAreaLabel.setText("Your BMR is: ");
+
 		}
 		else if(e.getSource() == calcBMRButton) {
 			//Hide CalcBMR and Back buttons
@@ -358,7 +356,6 @@ public class Entry extends JFrame implements ActionListener {
 		
 			textAreaLabel.setVisible(true);
 			textAreaPanel.setVisible(true);
-
 			radioButtonsPanel.setVisible(true);
 		}
 	}
