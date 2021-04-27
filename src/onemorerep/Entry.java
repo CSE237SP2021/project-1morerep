@@ -319,7 +319,7 @@ public class Entry extends JFrame implements ActionListener {
 			//Hide radiobuttons
 			sexButtonsPanel.setVisible(false);
 			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+			textAreaLabel.setText("Your BMR is: ");
 		}
 		else if(e.getSource() == femaleButton) {
 			//Set user sex
@@ -327,7 +327,7 @@ public class Entry extends JFrame implements ActionListener {
 			//Hide radiobuttons
 			sexButtonsPanel.setVisible(false);
 			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("<html>" + "Last one. Please choose your sex." + "</html>");
+			textAreaLabel.setText("Your BMR is: ");
 		}
 		else if(e.getSource() == calcBMRButton) {
 			//Hide CalcBMR and Back buttons
