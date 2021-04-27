@@ -35,12 +35,8 @@ public class Entry extends JFrame implements ActionListener {
 	JButton letsGoButton;
 	JLabel textAreaLabel;
 	JPanel textAreaPanel;
-	
-	ButtonGroup buttonGroup;
-	JPanel radioButtonsPanel;
 	JButton calcBMRButton;
-	JButton backButton;
-	
+
 	JTextField personalInfoTextField; //TextField that will accept name, age, weight, height
 	
 	ButtonGroup sexButtonGroup;
@@ -103,26 +99,7 @@ public class Entry extends JFrame implements ActionListener {
 		textAreaPanel.setBounds(0, 0, 500, 200);
 		textAreaPanel.setBackground(new Color(0xE3DAC9));
 		textAreaPanel.add(textAreaLabel);
-		
-		//Panel for beginning and end of day radioButtons
-		radioButtonsPanel = new JPanel();
-		radioButtonsPanel.setBounds(0, 200, 500, 100);
-		radioButtonsPanel.setBackground(new Color(0xE3DAC9));
-		
-		beginningButton = new JRadioButton("Beginning");
-		endOfTheDayButton = new JRadioButton("End");
-		
-		beginningButton.addActionListener(this);
-		endOfTheDayButton.addActionListener(this);
-		
-		//Group for beginning and end of day radio buttons
-		buttonGroup = new ButtonGroup();
-		buttonGroup.add(beginningButton);
-		buttonGroup.add(endOfTheDayButton);
-		
-		radioButtonsPanel.add(beginningButton);
-		radioButtonsPanel.add(endOfTheDayButton);
-		
+
 		
 		//Panel for sex radioButtons
 		sexButtonsPanel = new JPanel();
@@ -146,16 +123,10 @@ public class Entry extends JFrame implements ActionListener {
 
 		//Calculate BMR Button and Back Button
 		calcBMRButton = new JButton();
-		calcBMRButton.setBounds(150, 300, 100, 40);
+		calcBMRButton.setBounds(200, 300, 100, 40);
 		calcBMRButton.addActionListener(this);
 		calcBMRButton.setText("Calculate BMR");
 		calcBMRButton.setFocusable(false);
-		
-		backButton = new JButton();
-		backButton.setBounds(250, 300, 100, 40);
-		backButton.addActionListener(this);
-		backButton.setText("Back");
-		backButton.setFocusable(false);
 		
 		
 		//Personal Info textfield
@@ -200,11 +171,9 @@ public class Entry extends JFrame implements ActionListener {
 		frame.setResizable(false); //non-resizeable screen
 		
 		//Visibilities
-		radioButtonsPanel.setVisible(false);
 		textAreaLabel.setVisible(false);
 		textAreaPanel.setVisible(false);
 		calcBMRButton.setVisible(false);
-		backButton.setVisible(false);
 		personalInfoTextField.setVisible(false);
 		nameNextButton.setVisible(false);
 		ageNextButton.setVisible(false);
@@ -216,9 +185,7 @@ public class Entry extends JFrame implements ActionListener {
 		frame.add(welcomePanel);
 		frame.add(letsGoButton);
 		frame.add(textAreaPanel);
-		frame.add(radioButtonsPanel);
 		frame.add(calcBMRButton);
-		frame.add(backButton);
 		frame.add(nameNextButton);
 		frame.add(personalInfoTextField);
 		frame.add(ageNextButton);
@@ -229,33 +196,29 @@ public class Entry extends JFrame implements ActionListener {
 
 		//Finalize config
 		frame.getContentPane().setBackground(new Color(0xE3DAC9));
-		frame.setVisible(true); //Make frame visible.
+//		frame.setVisible(true); //Make frame visible.
 		
-//		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
-//		generateAllMenus(mainMenu);
-//		
-//		runMenu(mainMenu);
+		Menu mainMenu = new Menu("Welcome to 1MoreRep!");
+		generateAllMenus(mainMenu);
+		
+		runMenu(mainMenu);
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == beginningButton) {
-			System.out.println("Clicked on beginning");
-			//Hide the radio buttons
-			radioButtonsPanel.setVisible(false);
+		if(e.getSource() == letsGoButton) {
+			letsGoButton.setVisible(false);
+			welcomePanel.setVisible(false);
+		
+			textAreaLabel.setVisible(true);
+			textAreaPanel.setVisible(true);
+
 			//Hide please choose what time of the day it is label
 			textAreaLabel.setText("<html>" + "Good Morning! You can calculate your basic BMR with your personal information here." + "</html>");			
 			
-			//Show Back button
-			backButton.setVisible(true);
 			//Show Calculate BMR button
 			calcBMRButton.setVisible(true);
-			//Show Good morning...calculate BMR label
-			
-		}
-		else if(e.getSource() == endOfTheDayButton) {
-			//Show label that says endOfTheDay is only available through the command line or your Eclipse console.
 		}
 		else if(e.getSource() == nameNextButton) {
 			//Set username instance variable
@@ -330,7 +293,6 @@ public class Entry extends JFrame implements ActionListener {
 		else if(e.getSource() == calcBMRButton) {
 			//Hide CalcBMR and Back buttons
 			calcBMRButton.setVisible(false);
-			backButton.setVisible(false);
 			
 			//Change textAreaLabel text
 			textAreaLabel.setText("Please enter your name");
@@ -338,25 +300,6 @@ public class Entry extends JFrame implements ActionListener {
 			nameNextButton.setVisible(true);
 			//Show nameTextField
 			personalInfoTextField.setVisible(true);
-		}
-		else if(e.getSource() == backButton) {
-			//Show the main menu
-			textAreaLabel.setVisible(true);
-			textAreaPanel.setVisible(true);
-			radioButtonsPanel.setVisible(true);
-			
-			//Hide the current page
-			backButton.setVisible(false);
-			calcBMRButton.setVisible(false);
-			textAreaLabel.setText("Please choose what time of the day it is.");
-		}
-		else if(e.getSource() == letsGoButton) {
-			letsGoButton.setVisible(false);
-			welcomePanel.setVisible(false);
-		
-			textAreaLabel.setVisible(true);
-			textAreaPanel.setVisible(true);
-			radioButtonsPanel.setVisible(true);
 		}
 	}
 	
@@ -409,6 +352,7 @@ public class Entry extends JFrame implements ActionListener {
 			String option = menu.getOption(selectedOption);
 			processOption(option);
 			
+			System.out.println('\n');
 			menu.displayMenu();
 			selectedOption = keyboardIn.nextInt();
 		}
@@ -416,7 +360,11 @@ public class Entry extends JFrame implements ActionListener {
 	
 	private void processOption(String option) {
 		//if(menuMap.containsKey(option) && !option.equals("Add an exercise")) {
-		if(menuMap.containsKey(option)) {
+		if(option.equals("Beginning of the day")) {
+			System.out.println("\nThe menu you selected has a Graphical User Interface (GUI) feature. Feel free to come back to use other menu options.");
+			frame.setVisible(true); //Make frame visible.
+		}
+		else if(menuMap.containsKey(option)) {
 			runMenu(menuMap.get(option));
 		} else {
 			callAPI(option);
