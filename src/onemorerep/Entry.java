@@ -23,14 +23,6 @@ public class Entry extends JFrame implements ActionListener {
 	private static final int FRAME_WIDTH = 500;
 	private static final int FRAME_HEIGHT = 500;
 	
-	JRadioButton beginningButton;
-	JRadioButton endOfTheDayButton;
-	String username;
-	int age;
-	double weight;
-	double height;
-	int sex;
-	
 	JPanel welcomePanel;
 	JButton letsGoButton;
 	JLabel textAreaLabel;
@@ -222,13 +214,13 @@ public class Entry extends JFrame implements ActionListener {
 		}
 		else if(e.getSource() == nameNextButton) {
 			//Set username instance variable
-			username = personalInfoTextField.getText();
+			this.user.setName(personalInfoTextField.getText());
 			
 			//Hide nameNextButton
 			nameNextButton.setVisible(false);
 			
 			//Set textAreaLabel to be greeting of the name
-			textAreaLabel.setText("<html>" + "Hello," + this.username + "! Please enter your age." + "</html>");
+			textAreaLabel.setText("<html>" + "Hello," + this.user.getName() + "! Please enter your age." + "</html>");
 			
 			personalInfoTextField.setText("");
 			
@@ -237,33 +229,33 @@ public class Entry extends JFrame implements ActionListener {
 		}
 		else if(e.getSource() == ageNextButton) {
 			//Set user age
-			this.age = Integer.parseInt(personalInfoTextField.getText());
+			this.user.setAge(Integer.parseInt(personalInfoTextField.getText()));
 			
 			//Hide ageNextButton
 			ageNextButton.setVisible(false);
 			//Reset textField
 			personalInfoTextField.setText("");
 			//Set textArea Label
-			textAreaLabel.setText("<html>" + "Nice work," + this.username + "! Please enter your weight (kg)." + "</html>");
+			textAreaLabel.setText("<html>" + "Nice work," + this.user.getName() + "! Please enter your weight (kg)." + "</html>");
 			
 			//Show weightNextButton
 			weightNextButton.setVisible(true);
 		}
 		else if(e.getSource() == weightNextButton) {
 			//Set user weight
-			this.weight = Double.parseDouble(personalInfoTextField.getText());
+			this.user.setWeight(Double.parseDouble(personalInfoTextField.getText()));
 			//Hide weightNextButton
 			weightNextButton.setVisible(false);
 			//Reset TextField
 			personalInfoTextField.setText("");
 			//Set textArea label
-			textAreaLabel.setText("<html>" + "Almost there," + this.username + ". Please enter your height (cm)." + "</html>");
+			textAreaLabel.setText("<html>" + "Almost there," + this.user.getName() + ". Please enter your height (cm)." + "</html>");
 			//Show heightNextButton
 			heightNextButton.setVisible(true);
 		}
 		else if(e.getSource() == heightNextButton) {
 			//Set user height
-			this.height = Double.parseDouble(personalInfoTextField.getText());
+			this.user.setHeight(Double.parseDouble(personalInfoTextField.getText()));
 			//Hide heightNextButton
 			heightNextButton.setVisible(false);
 			//Hide textField
@@ -275,19 +267,19 @@ public class Entry extends JFrame implements ActionListener {
 		}
 		else if(e.getSource() == maleButton) {
 			//Set user sex
-			this.sex = 1;
+			this.user.setSex(1);
 			//Hide radiobuttons
 			sexButtonsPanel.setVisible(false);
 			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("Your BMR is: ");
+			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
 		}
 		else if(e.getSource() == femaleButton) {
 			//Set user sex
-			this.sex = 2;
+			this.user.setSex(2);
 			//Hide radiobuttons
 			sexButtonsPanel.setVisible(false);
 			//Set textAreaLabel with BMR calculated
-			textAreaLabel.setText("Your BMR is: ");
+			textAreaLabel.setText("Your BMR is: " + this.user.calculateBMR());
 
 		}
 		else if(e.getSource() == calcBMRButton) {
@@ -373,9 +365,9 @@ public class Entry extends JFrame implements ActionListener {
 	
 	private void callAPI(String option) {
 		switch(option) {
-		case "Calculate my BMR":
-			Apis.calculateMyBMR(keyboardIn, user);
-			break;
+//		case "Calculate my BMR":
+//			Apis.calculateMyBMR(keyboardIn, user);
+//			break;
 		case "Add a food":
 			Apis.addFoodToFoodLog(keyboardIn, foodLog);;
 			break;

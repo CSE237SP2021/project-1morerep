@@ -5,15 +5,15 @@ import java.util.Scanner;
 /* All methods for the menu options without sub menu, mainly Input/Output plus Object methods from User object, Food object... */
 public class Apis {
 
-	public static void calculateMyBMR(Scanner keyboardIn, User user) {
-		user.setName(getUserName(keyboardIn));
-		user.setAge(getUserAge(keyboardIn));
-		user.setWeight(getUserWeight(keyboardIn));
-		user.setHeight(getUserHeight(keyboardIn));
-		user.setSex(getUserSex(keyboardIn));
-
-		calculateAndDisplayBMRResult(user);
-	}
+//	public static void calculateMyBMR(Scanner keyboardIn, User user) {
+//		user.setName(getUserName(keyboardIn));
+//		user.setAge(getUserAge(keyboardIn));
+//		user.setWeight(getUserWeight(keyboardIn));
+//		user.setHeight(getUserHeight(keyboardIn));
+//		user.setSex(getUserSex(keyboardIn));
+//
+//		calculateAndDisplayBMRResult(user);
+//	}
 	
 	
 	public static void addFoodToFoodLog(Scanner keyboardIn, FoodLog foodLog) {
@@ -177,10 +177,10 @@ public class Apis {
 		return sex;
 	}
 	
-	private static void calculateAndDisplayBMRResult(User user) {
-		int bmr = user.calculateBMR();
-		System.out.println("Your BMR is: " + bmr);
-	}
+//	private static void calculateAndDisplayBMRResult(User user) {
+//		int bmr = user.calculateBMR();
+//		System.out.println("Your BMR is: " + bmr);
+//	}
 	
 	private static boolean isValidAgeInput(int age) {
 		return age >= 15 && age <= 80;
