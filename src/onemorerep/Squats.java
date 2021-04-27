@@ -5,7 +5,7 @@ public class Squats implements Exercises {
 	
 	private String name;
 
-	private double duration;
+	private double duration, met, constant1, constant2;
 	
 	private User person;
 	
@@ -13,12 +13,15 @@ public class Squats implements Exercises {
 		this.name = name;
 		this.duration = duration;
 		this.person = person;
+		this.met = 5.5;
+		this.constant1=3.5;
+		this.constant2=200.0;
 	}
 	
 	@Override
 	public double caloriesBurned() {
 		// TODO Auto-generated method stub
-		return ((this.duration*5.5*3.5*person.getWeight())/200.0);
+		return ((this.duration*met*constant1*person.getWeight())/constant2);
 	}
 
 	@Override
