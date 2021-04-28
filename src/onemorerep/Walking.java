@@ -4,7 +4,7 @@ public class Walking implements Exercises {
 
 	private String name;
 
-	private double duration;
+	private double duration, met, constant1, constant2;
 	
 	private User person;
 	
@@ -12,11 +12,14 @@ public class Walking implements Exercises {
 		this.name = name;
 		this.duration = duration;
 		this.person = person;
+		this.met = 4.3;
+		this.constant1=3.5;
+		this.constant2=200.0;
 	}
 	
 	@Override
 	public double caloriesBurned() {
-		return ((this.duration*4.3*3.5*person.getWeight())/200.0);
+		return ((this.duration*met*constant1*person.getWeight())/constant2);
 	}
 	@Override
 	public String getName() {

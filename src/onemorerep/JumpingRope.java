@@ -3,7 +3,7 @@ public class JumpingRope implements Exercises {
 	
 	private String name;
 
-	private double duration;
+	private double duration, met, constant1, constant2;
 	
 	private User person;
 	
@@ -11,11 +11,14 @@ public class JumpingRope implements Exercises {
 		this.name = name;
 		this.duration = duration;
 		this.person = person;
+		this.met = 11.8;
+		this.constant1=3.5;
+		this.constant2=200.0;
 	}
 	
 	@Override
 	public double caloriesBurned() {
-		return ((this.duration*11.8*3.5*person.getWeight())/200.0);
+		return ((this.duration*met*constant1*person.getWeight())/constant2);
 	}
 	@Override
 	public String getName() {

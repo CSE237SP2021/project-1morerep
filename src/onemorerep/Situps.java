@@ -4,7 +4,7 @@ public class Situps implements Exercises {
 
 	private String name;
 
-	private double duration;
+	private double duration, met, constant1, constant2;
 	
 	private User person;
 	
@@ -12,12 +12,15 @@ public class Situps implements Exercises {
 		this.name = name;
 		this.duration = duration;
 		this.person = person;
+		this.met = 8.0;
+		this.constant1=3.5;
+		this.constant2=200.0;
 	}
 	
 	@Override
 	public double caloriesBurned() {
 		// TODO Auto-generated method stub
-		return ((this.duration*8.0*3.5*person.getWeight())/200.0);
+		return ((this.duration*met*constant1*person.getWeight())/constant2);
 	}
 
 	@Override
