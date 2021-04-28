@@ -113,6 +113,7 @@ public class Apis {
 
 	private static String getFoodName(Scanner keyboardIn) {
 		System.out.println("Please enter food name");
+		System.out.println("Tip: No space is allowed, underscore can be used instead.");
 		String name = keyboardIn.next();
 		return name;
 	}
@@ -120,6 +121,7 @@ public class Apis {
 	
 	private static String getUserName(Scanner keyboardIn) {
 		System.out.println("Please enter your name");
+		System.out.println("Tip: No space is allowed, underscore can be used instead.");
 		String name = keyboardIn.next();
 		System.out.println("Hello, " + name);
 		return name;
