@@ -65,3 +65,16 @@ Otherwise, the caluculate calories burned from workout option may end in error.
 
 **What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)**
 - Please refer to the section above to see how to run the program.
+
+
+## Iteration #3 Write up
+
+**What user stories were completed this iteration?
+- Brand new Graphical User Interface (GUI) for "Beginning of the day" menu option. This is the only menu option that has the GUI because implementing GUI takes more time than our iteration period has allowed. The rest of the menu functionalities should be available on the command line/Eclipse console.
+- In the GUI, user should be able to see the welcome screen and start calculating their BMR by inputting their personal information one screen after another. Don't quit the GUI screen if you wish to continue on the command line/console. Otherwise, you can re-run the program as well.
+
+
+**Is there anything that you implemented but doesn't currently work?
+
+**What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)**
+- Please refer to the section above to see how to run the program.
