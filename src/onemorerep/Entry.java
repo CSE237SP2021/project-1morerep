@@ -16,7 +16,8 @@ public class Entry {
 	private GUI gui;
 	
 	public Entry() {
-		user = new User();
+//		user = new User();
+		user = UserStorage.readUser();
 		menuMap = new HashMap<String, Menu>();
 		gui = new GUI(user);
 		keyboardIn = new Scanner(System.in);

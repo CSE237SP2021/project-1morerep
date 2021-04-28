@@ -341,6 +341,7 @@ public class GUI extends JFrame implements ActionListener {
 		//Hide radiobuttons
 		sexButtonsPanel.setVisible(false);
 		//Set textAreaLabel with BMR calculated
+		UserStorage.writeUser(this.user);
 		textAreaLabel.setText("<html>" +  "Your BMR is: " + this.user.calculateBMR() + ". Don't quit this window to keep working on the console/command line" + "</html>");
 	}
 	
@@ -350,6 +351,7 @@ public class GUI extends JFrame implements ActionListener {
 		//Hide radiobuttons
 		sexButtonsPanel.setVisible(false);
 		//Set textAreaLabel with BMR calculated
+		UserStorage.writeUser(this.user);
 		textAreaLabel.setText("<html>" +  "Your BMR is: " + this.user.calculateBMR() + ". Don't quit this window to keep working on the console/command line" + "</html>");
 	}
 	
